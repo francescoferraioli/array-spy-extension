@@ -1,63 +1,64 @@
+function arraySpyCode(tracked_methods) {
+  // Global state for array spy
+  const array_spy_state = {
+    originals: {},
+    current_array: null,
+    previous_array: null
+  };
+
+  // Make the tracking array accessible globally
+  window.arraySpyExtensionValue = {
+    get current() {
+      return array_spy_state.current_array;
+    },
+    get previous() {
+      return array_spy_state.previous_array;
+    }
+  };
+
+  function initializeArraySpy(methods_to_track) {
+    // Extend each array method
+    for (const method of methods_to_track) {
+      if (Array.prototype[method]) {
+        array_spy_state.originals[method] = Array.prototype[method];
+
+        Array.prototype[method] = function(fn, thisArg) {
+          const result = array_spy_state.originals[method].call(this, fn, thisArg);
+
+          array_spy_state.previous_array = this;
+          array_spy_state.current_array = result;
+
+          return result;
+        };
+      }
+    }
+  }
+
+  // Initialize with initial methods
+  initializeArraySpy(tracked_methods);
+
+  // Listen for configuration changes
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.type === 'updateTrackedMethods') {
+      // Restore original methods
+      for (const method in array_spy_state.originals) {
+        Array.prototype[method] = array_spy_state.originals[method];
+      }
+      // Reinitialize with new methods
+      initializeArraySpy(message.methods);
+    }
+  });
+}
+
 window.addEventListener('load', () => {
-  // Default methods to track
-  const default_methods = ['map', 'filter', 'flatMap'];
-  
   // Get tracked methods from storage
   chrome.storage.local.get(['tracked_methods'], (result) => {
+    // Default methods to track
+    const default_methods = ['map', 'filter', 'flatMap'];
     const tracked_methods = result.tracked_methods || default_methods;
     
     // Create script element to inject code into page context
     const script = document.createElement('script');
-    
-    function arraySpyCode(tracked_methods) {
-      const originals = {};
-      let _array_spy_current_array = null;
-      let _array_spy_previous_array = null;
-
-      // Make the tracking array accessible globally
-      window.arraySpyExtensionValue = {
-        get current() {
-          return _array_spy_current_array;
-        },
-        get previous() {
-          return _array_spy_previous_array;
-        }
-      };
-
-      function initializeArraySpy(methods_to_track) {
-        // Extend each array method
-        for (const method of methods_to_track) {
-          if (Array.prototype[method]) {
-            originals[method] = Array.prototype[method];
-
-            Array.prototype[method] = function(fn, thisArg) {
-              const result = originals[method].call(this, fn, thisArg);
-
-              _array_spy_previous_array = this;
-              _array_spy_current_array = result;
-
-              return result;
-            };
-          }
-        }
-      }
-
-      // Initialize with initial methods
-      initializeArraySpy(tracked_methods);
-
-      // Listen for configuration changes
-      chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message.type === 'updateTrackedMethods') {
-          // Restore original methods
-          for (const method in originals) {
-            Array.prototype[method] = originals[method];
-          }
-          // Reinitialize with new methods
-          initializeArraySpy(message.methods);
-        }
-      });
-    }
-
     script.textContent = `(${arraySpyCode.toString()})(${JSON.stringify(tracked_methods)});`;
     document.documentElement.appendChild(script);
   });
