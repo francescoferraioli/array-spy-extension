@@ -5,7 +5,7 @@ A Chrome extension that allows you to track array methods and their values in re
 ## Features
 
 - Track array methods like `map`, `filter`, `flatMap`, and more
-- Access the currently tracked array through the global `arraySpyExtensionValue.currentArray` variable
+- Access the currently tracked array through the global `__arraySpy.current` variable
 - Configurable through the extension popup
 - Default tracking for `map`, `filter`, and `flatMap`
 
@@ -22,7 +22,7 @@ A Chrome extension that allows you to track array methods and their values in re
 2. Select which array methods you want to track
 3. Click "Save Configuration"
 4. The extension will now track the selected array methods
-5. Access the currently tracked array through `arraySpyExtensionValue.currentArray` in the browser console
+5. Access the currently tracked array through `__arraySpy.current` in the browser console
 
 ## Example
 
@@ -30,5 +30,6 @@ A Chrome extension that allows you to track array methods and their values in re
 const numbers = [1, 2, 3, 4, 5];
 
 numbers.map(x => x * 2);
-console.log(arraySpyExtensionValue.currentArray); // [1, 2, 3, 4, 5]
+console.log(__arraySpy.previous); // [1, 2, 3, 4, 5]
+console.log(__arraySpy.current); // [2, 4, 6, 8, 10]
 ```
