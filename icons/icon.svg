@@ -4,15 +4,15 @@
   <circle cx="64" cy="64" r="60" fill="#4CAF50"/>
   
   <!-- Array brackets -->
-  <path d="M50 40 L40 40 L40 88 L50 88" stroke="white" stroke-width="8" fill="none"/>
-  <path d="M88 40 L98 40 L98 88 L88 88" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M45 40 L35 40 L35 88 L45 88" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M83 40 L93 40 L93 88 L83 88" stroke="white" stroke-width="8" fill="none"/>
   
   <!-- Ellipsis dots -->
-  <circle cx="59" cy="64" r="4" fill="white"/>
-  <circle cx="69" cy="64" r="4" fill="white"/>
-  <circle cx="79" cy="64" r="4" fill="white"/>
+  <circle cx="54" cy="64" r="4" fill="white"/>
+  <circle cx="64" cy="64" r="4" fill="white"/>
+  <circle cx="74" cy="64" r="4" fill="white"/>
   
   <!-- Spyglass -->
-  <circle cx="60" cy="75" r="7.5" stroke="white" stroke-width="4" fill="none"/>
-  <line x1="55" y1="82.5" x2="47.5" y2="90" stroke="white" stroke-width="4"/>
+  <circle cx="55" cy="75" r="7.5" stroke="white" stroke-width="4" fill="none"/>
+  <line x1="50" y1="82.5" x2="42.5" y2="90" stroke="white" stroke-width="4"/>
 </svg> 
