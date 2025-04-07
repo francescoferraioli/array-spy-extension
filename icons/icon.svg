@@ -4,7 +4,7 @@
   <circle cx="64" cy="64" r="60" fill="#4CAF50"/>
   
   <!-- Array brackets -->
-  <path d="M40 40 L50 40 L50 88 L40 88" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M50 40 L40 40 L40 88 L50 88" stroke="white" stroke-width="8" fill="none"/>
   <path d="M88 40 L98 40 L98 88 L88 88" stroke="white" stroke-width="8" fill="none"/>
   
   <!-- Ellipsis dots -->
