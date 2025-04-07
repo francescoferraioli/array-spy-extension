@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
     // Create script element to inject code into page context
     const script = document.createElement('script');
     
-    function arraySpyCode(tracked_methods, default_methods) {
+    function arraySpyCode(tracked_methods) {
       const originals = {};
       let _array_spy_current_array = null;
       let _array_spy_previous_array = null;
@@ -49,10 +49,8 @@ window.addEventListener('load', () => {
       chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (message.type === 'updateTrackedMethods') {
           // Restore original methods
-          for (const method of default_methods) {
-            if (originals[method]) {
-              Array.prototype[method] = originals[method];
-            }
+          for (const method in originals) {
+            Array.prototype[method] = originals[method];
           }
           // Reinitialize with new methods
           initializeArraySpy(message.methods);
@@ -60,7 +58,7 @@ window.addEventListener('load', () => {
       });
     }
 
-    script.textContent = `(${arraySpyCode.toString()})(${JSON.stringify(tracked_methods)}, ${JSON.stringify(default_methods)});`;
+    script.textContent = `(${arraySpyCode.toString()})(${JSON.stringify(tracked_methods)});`;
     document.documentElement.appendChild(script);
   });
 
