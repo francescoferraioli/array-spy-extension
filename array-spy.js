@@ -35,6 +35,10 @@ function initializeArraySpy(methods_to_track) {
 
 // Listen for initialization and configuration changes
 window.addEventListener('message', (event) => {
+  if (!event?.data?.type) {
+    return;
+  }
+
   if (!event.data.type.startsWith('array-spy')) {
     return;
   }
