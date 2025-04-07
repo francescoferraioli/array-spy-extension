@@ -13,6 +13,6 @@
   <circle cx="74" cy="64" r="4" fill="white"/>
   
   <!-- Spyglass -->
-  <circle cx="55" cy="75" r="10" stroke="#FFE082" stroke-width="3" fill="none"/>
-  <line x1="48" y1="82.5" x2="38" y2="92.5" stroke="#FFE082" stroke-width="3"/>
+  <circle cx="55" cy="75" r="16" stroke="#FFE082" stroke-width="3" fill="none"/>
+  <line x1="44" y1="86" x2="28" y2="102" stroke="#FFE082" stroke-width="3"/>
 </svg> 
