@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "ArraySpy",
+  "version": "1.0",
+  "description": "Track array methods and their values in real-time",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icons/icon.svg"
+  }
+} 
