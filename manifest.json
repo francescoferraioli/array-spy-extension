@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ArraySpy",
   "version": "1.0",
-  "description": "Debug and inspect array transformations by tracking array methods like map, filter, and flatMap. Access previous and current array values in real-time through the console.",
+  "description": "Track array methods like map, filter, and flatMap. View previous and current array values in the console to debug transformations.",
   "permissions": [
     "storage",
     "activeTab"
