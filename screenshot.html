@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Console Screenshot Example</title>
+</head>
+<body>
+	<button onclick="run();">Click me</button>
+    <script>
+	function run() {
+		const users = [
+			{ id: 1, name: 'John Doe', role: 'admin', permissions: ['read', 'write', 'delete'], posts: 5 },
+			{ id: 2, name: 'Jane Smith', role: 'user', permissions: ['read', 'comment'], posts: 2 },
+			{ id: 3, name: 'Bob Wilson', role: 'user', permissions: ['read', 'write'], posts: 1 },
+			{ id: 4, name: 'Alice Brown', role: 'moderator', permissions: ['read', 'write', 'moderate'], posts: 8 },
+			{ id: 5, name: 'Charlie Davis', role: 'user', permissions: ['read'], posts: 0 }
+		];
+
+		const special_permissions = users
+			.filter(user => user.posts > 1)
+			.flatMap(user => user.permissions)
+			.map(permission => permission.toUpperCase());
+	}
+    </script>
+</body>
+</html> 
