@@ -2,14 +2,14 @@
   "manifest_version": 3,
   "name": "ArraySpy",
   "version": "1.0",
-  "description": "Track array methods and their values in real-time",
+  "description": "Debug and inspect array transformations by tracking array methods like map, filter, and flatMap. Access previous and current array values in real-time through the console.",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icons/icon.svg"
+    "default_icon": "icons/icon.png"
   },
   "content_scripts": [
     {
@@ -19,9 +19,6 @@
   ],
   "background": {
     "service_worker": "background.js"
-  },
-  "icons": {
-    "128": "icons/icon.svg"
   },
   "web_accessible_resources": [{
     "resources": ["array-spy.js"],
